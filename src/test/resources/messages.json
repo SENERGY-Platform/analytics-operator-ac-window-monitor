@@ -1,0 +1,35 @@
+[
+  {
+    "device_id": "1",
+    "value": {
+      "reading": {
+        "window": true,
+        "acmode": "OFF",
+        "expectValue": true,
+        "acpowerstate": false
+      }
+    }
+  },
+  {
+    "device_id": "2",
+    "value": {
+      "reading": {
+        "window": false,
+        "acmode": "COOL",
+        "expectValue": true,
+        "acpowerstate": false
+      }
+    }
+  },
+  {
+    "device_id": "1",
+    "value": {
+      "reading": {
+        "window": false,
+        "acmode": "COOL",
+        "expectValue": false,
+        "acpowerstate": true
+      }
+    }
+  }
+]

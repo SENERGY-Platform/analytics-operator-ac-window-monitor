@@ -1,0 +1,31 @@
+{
+  "config": {
+    "input": "true",
+    "inputs": "3"
+  },
+  "inputTopics": [
+    {
+      "Name": "test",
+      "FilterType": "DeviceId",
+      "FilterValue": "1,2",
+      "Mappings": [
+        {
+          "Dest": "window",
+          "Source": "value.reading.window"
+        },
+        {
+          "Dest": "acmode",
+          "Source": "value.reading.acmode"
+        },
+        {
+          "Dest": "expectValue",
+          "Source": "value.reading.expectValue"
+        },
+        {
+          "Dest": "acpowerstate",
+          "Source": "value.reading.acpowerstate"
+        }
+      ]
+    }
+  ]
+}
