@@ -3,7 +3,7 @@
     "device_id": "1",
     "value": {
       "reading": {
-        "window": true,
+        "window": 23,
         "acmode": "OFF",
         "expectValue": true,
         "acpowerstate": false
@@ -14,7 +14,7 @@
     "device_id": "2",
     "value": {
       "reading": {
-        "window": false,
+        "window": 22,
         "acmode": "COOL",
         "expectValue": true,
         "acpowerstate": false

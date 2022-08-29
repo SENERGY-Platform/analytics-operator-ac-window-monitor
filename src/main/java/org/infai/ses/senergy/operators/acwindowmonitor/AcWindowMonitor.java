@@ -28,7 +28,10 @@ import java.util.Set;
 
 public class AcWindowMonitor extends BaseOperator {
 
-    private Map<String, Boolean> map;
+    //final static String windowOpen = "Door/Window Open";
+    final static String windowClosed = "Door/Window Closed";
+
+    private final Map<String, Boolean> map;
 
     public AcWindowMonitor(){
         map = new HashMap<>();
@@ -59,9 +62,23 @@ public class AcWindowMonitor extends BaseOperator {
             return;
         }
 
-        Set<Map.Entry<String, Boolean>> entries = windowInput.getFilterIdValueMap(Boolean.class).entrySet();
-        for (Map.Entry<String, Boolean> entr: entries) {
-            map.put(entr.getKey(), entr.getValue());
+        Set<Map.Entry<String, Object>> entries = windowInput.getFilterIdValueMap(Object.class).entrySet();
+        for (Map.Entry<String, Object> entr: entries) {
+            Object val = entr.getValue();
+            boolean b;
+            if (val == null) {
+                b = false;
+            } else if (val instanceof Boolean) {
+                b = (Boolean) val;
+            } else  if (val instanceof String){
+               b = val.equals(windowClosed);
+            } else if (val instanceof Integer){
+                b = val.equals(23);
+            } else {
+                System.err.println("Cannot evaluate window state, skipping message. State was " + val + " with class " + val.getClass().getName());
+                return;
+            }
+            map.put(entr.getKey(), b);
         }
 
         boolean allWindowsClosed = !map.containsValue(Boolean.FALSE);
@@ -74,7 +91,6 @@ public class AcWindowMonitor extends BaseOperator {
             return;
         }
         message.output("ok", true);
-        return;
     }
 
     @Override
